@@ -2,13 +2,15 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { EnvService } from './libs/env/env.service';
 import { EnvEnum } from './libs/env/env.enum';
-
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston/dist/winston.constants';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const envService = app.get(EnvService);
   const PORT = +envService.get<EnvEnum>(EnvEnum.PORT) || 3000;
 
-  await app.listen(3000);
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
+
+  await app.listen(PORT);
 }
 bootstrap();

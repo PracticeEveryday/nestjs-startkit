@@ -1,11 +1,8 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston/dist/winston.constants';
+import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class LogService {
-  constructor(
-    @Inject(WINSTON_MODULE_NEST_PROVIDER) private readonly logger: Logger,
-  ) {}
+  private readonly logger = Logger;
 
   debug(label: string, message: string, data: any = {}): void {
     this.logger.debug({ message, ...data }, label);
