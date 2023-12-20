@@ -7,10 +7,14 @@ import { TestDto } from './test.dto';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Get('/')
+  getHello() {
+    return this.appService.getHello();
+  }
+
   @Get('/a/:test/:testt')
-  getHello(@Param() dto: TestDto) {
+  getHello2(@Param() dto: TestDto) {
     return dto;
-    // return this.appService.getHello();
   }
 
   @Get('/error')

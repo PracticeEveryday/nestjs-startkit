@@ -10,6 +10,7 @@ import { LogInterceptor } from './common/interceptor/log.interceptor';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { HttpExceptionFilter } from './common/filter/httpException.filter';
 import { ValidationException } from './common/filter/exception/validation.exception';
+import { EnvModule } from './libs/env/env.module';
 
 const interceptors = [
   {
@@ -39,7 +40,7 @@ const pipes = [
   },
 ];
 @Module({
-  imports: [LogModule.forRoot()],
+  imports: [LogModule.forRoot(), EnvModule.forRoot()],
   controllers: [AppController],
   providers: [AppService, ...interceptors, ...filters, ...pipes],
 })

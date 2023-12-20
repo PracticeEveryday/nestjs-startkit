@@ -11,11 +11,12 @@ export class ValidationException extends BaseException {
         .map((error, idx) => {
           console.log(error);
           const { property, value, constraints } = error;
-          return `[property: ${property}, value: ${value}] ${Object.values(
-            constraints,
-          )
+
+          const joinedConstraints = Object.values(constraints)
             .map((value) => value)
-            .join(` + `)}`;
+            .join(` + `);
+
+          return `[property: ${property}, value: ${value}] ${joinedConstraints}`;
         })
         .join(` && `),
       stack: new Error(JSON.stringify(errors)).stack,
