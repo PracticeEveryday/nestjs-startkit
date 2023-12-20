@@ -1,14 +1,16 @@
-import { Controller, Get, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { BaseException } from './common/filter/exception/base.exception';
+import { TestDto } from './test.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello() {
-    return this.appService.getHello();
+  @Get('/a/:test/:testt')
+  getHello(@Param() dto: TestDto) {
+    return dto;
+    // return this.appService.getHello();
   }
 
   @Get('/error')
