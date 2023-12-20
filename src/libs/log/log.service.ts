@@ -19,4 +19,12 @@ export class LogService {
       label,
     );
   }
+
+  warn(label: string, error: Error): void {
+    this.logger.warn(
+      error.name,
+      [error.message, error.stack].join('\n'),
+      label,
+    );
+  }
 }

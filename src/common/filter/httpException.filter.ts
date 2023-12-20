@@ -8,6 +8,7 @@ import {
 import { LogService } from '../../libs/log/log.service';
 import { HttpAdapterHost } from '@nestjs/core';
 import { BaseException } from './exception/base.exception';
+import { ErrorTypeEnum } from '../enum/errorType.enum';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -31,7 +32,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
     })();
 
-    this.logService.error('error', exception);
+    exception.errorType === ErrorTypeEnum.ERROR
+      ? this.logService.error('error', exception)
+      : this.logService.warn('warn', exception);
 
     this.httpAdapterHost.httpAdapter.reply(
       (() => host.switchToHttp().getResponse())(),
