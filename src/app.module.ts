@@ -1,8 +1,4 @@
-import {
-  ClassSerializerInterceptor,
-  Module,
-  ValidationPipe,
-} from '@nestjs/common';
+import { ClassSerializerInterceptor, Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LogModule } from './libs/log/log.module';
@@ -11,6 +7,7 @@ import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { HttpExceptionFilter } from './common/filter/httpException.filter';
 import { ValidationException } from './common/filter/exception/validation.exception';
 import { EnvModule } from './libs/env/env.module';
+import { HttpResponseInterceptor } from './common/interceptor/httpResponse.interceptor';
 
 const interceptors = [
   {
@@ -20,6 +17,10 @@ const interceptors = [
   {
     provide: APP_INTERCEPTOR,
     useClass: ClassSerializerInterceptor,
+  },
+  {
+    provide: APP_INTERCEPTOR,
+    useClass: HttpResponseInterceptor,
   },
 ];
 
