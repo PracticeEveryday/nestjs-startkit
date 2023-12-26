@@ -25,7 +25,7 @@ export function setupSwagger(app: INestApplication): void {
     .setTitle('Nestjs-startkit')
     .setDescription(swaggerInfo)
     .setVersion('0.0.1')
-    .addServer(`http://localhost:${process.env.PORT}/api`, '로컬서버')
+    .addServer(`http://localhost:${process.env.PORT}`, '로컬서버')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);

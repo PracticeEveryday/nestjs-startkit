@@ -1,13 +1,18 @@
-import { Controller, Get, HttpStatus, Param } from '@nestjs/common';
+import { Controller, Get, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
 import { BaseException } from './common/filter/exception/base.exception';
 import { NotFoundException } from './common/filter/exception/notFound.exception';
+import { MethodEnum, Route } from './common/decorator/router.decorator';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
+  @Route({
+    request: { method: MethodEnum.GET },
+    response: { code: HttpStatus.OK },
+  })
   getHello() {
     return this.appService.getHello();
   }
