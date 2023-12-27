@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { BaseException } from './common/filter/exception/base.exception';
 import { NotFoundException } from './common/filter/exception/notFound.exception';
 import { MethodEnum, Route } from './common/decorator/router.decorator';
+import { ResponseDto } from './common/dto/response.dto';
 
 @Controller()
 export class AppController {
@@ -13,8 +14,8 @@ export class AppController {
     request: { method: MethodEnum.GET },
     response: { code: HttpStatus.OK },
   })
-  getHello() {
-    return this.appService.getHello();
+  getHello(): ResponseDto<string> {
+    return ResponseDto.OK<string>(this.appService.getHello());
   }
 
   @Get('/error')

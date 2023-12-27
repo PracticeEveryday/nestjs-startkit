@@ -5,13 +5,11 @@ import { map, Observable } from 'rxjs';
 export class HttpResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler<unknown>): Observable<unknown> | Promise<Observable<unknown>> {
     return next.handle().pipe(
-      map((result) => {
-        if (result) {
-          return { result };
-        }
+      map((data) => {
+        if (data) return data;
 
         return {
-          result: 'no data',
+          data: 'no data',
         };
       }),
     );
