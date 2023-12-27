@@ -1,6 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
 import { Exclude, Expose } from 'class-transformer';
-import { ApiProperty } from '@nestjs/swagger';
 
 export class ResponseDto<T> {
   @Exclude() private readonly _statusCode: HttpStatus;

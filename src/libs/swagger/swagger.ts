@@ -1,31 +1,29 @@
 import * as fs from 'fs';
+import * as basicAuth from 'express-basic-auth';
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as basicAuth from 'express-basic-auth';
+import { SWAGGER_API_CURRENT_VERSION, SWAGGER_API_NAME, SWAGGER_API_ROOT, SWAGGER_SERVER_ONE, SWAGGER_SERVER_ONE_DESC } from './const';
 
 export function setupSwagger(app: INestApplication): void {
-  const SWAGGER_USER = process.env['SWAGGER_USER'] as string;
+  const SWAGGER_USER = process.env.SWAGGER_USER;
 
   app.use(
-    ['/api'],
+    [SWAGGER_API_ROOT],
     basicAuth({
       challenge: true,
       users: {
-        [SWAGGER_USER]: process.env['SWAGGER_PASSWORD'] as string,
+        [SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
       },
     }),
   );
 
-  const swaggerInfo = fs.readFileSync(
-    'src/libs/swagger/swagger-info.md',
-    'utf-8',
-  );
+  const swaggerInfo = fs.readFileSync('src/libs/swagger/swagger-info.md', 'utf-8');
 
   const options = new DocumentBuilder()
-    .setTitle('Nestjs-startkit')
+    .setTitle(SWAGGER_API_NAME)
     .setDescription(swaggerInfo)
-    .setVersion('0.0.1')
-    .addServer(`http://localhost:${process.env.PORT}`, '로컬서버')
+    .setVersion(SWAGGER_API_CURRENT_VERSION)
+    .addServer(SWAGGER_SERVER_ONE, SWAGGER_SERVER_ONE_DESC)
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
