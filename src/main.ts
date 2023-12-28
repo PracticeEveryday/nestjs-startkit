@@ -5,6 +5,7 @@ import { EnvEnum } from './libs/env/env.enum';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston/dist/winston.constants';
 import { setupSwagger } from './libs/swagger/swagger';
 import { ClassSerializerInterceptor } from '@nestjs/common';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 

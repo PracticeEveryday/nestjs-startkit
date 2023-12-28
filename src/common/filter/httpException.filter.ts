@@ -11,17 +11,26 @@ export class HttpExceptionFilter implements ExceptionFilter {
     private readonly httpAdapterHost: HttpAdapterHost,
   ) {}
 
-  catch(error: Error, host: ArgumentsHost): any {
+  catch(error: unknown, host: ArgumentsHost): any {
     const exception = (() => {
       if (error instanceof BaseException) {
         return error;
-      } else {
+      }
+
+      if (error instanceof HttpException) {
         return new BaseException({
           message: error.message,
           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
           stack: error.stack,
         });
       }
+
+      let lastError = error as Error;
+      return new BaseException({
+        message: lastError.message,
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        stack: lastError.stack,
+      });
     })();
 
     exception.errorType === ErrorTypeEnum.ERROR ? this.logService.error('error', exception) : this.logService.warn('warn', exception);
