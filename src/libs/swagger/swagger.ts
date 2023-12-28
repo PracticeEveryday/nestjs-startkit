@@ -5,14 +5,14 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { SWAGGER_API_CURRENT_VERSION, SWAGGER_API_NAME, SWAGGER_API_ROOT, SWAGGER_SERVER_ONE, SWAGGER_SERVER_ONE_DESC } from './const';
 
 export function setupSwagger(app: INestApplication): void {
-  const SWAGGER_USER = process.env.SWAGGER_USER;
+  const SWAGGER_USER = process.env['SWAGGER_USER']!;
 
   app.use(
     [SWAGGER_API_ROOT],
     basicAuth({
       challenge: true,
       users: {
-        [SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
+        [SWAGGER_USER]: process.env['SWAGGER_PASSWORD']!,
       },
     }),
   );

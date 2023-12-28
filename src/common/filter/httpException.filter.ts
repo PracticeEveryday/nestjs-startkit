@@ -1,10 +1,4 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpException,
-  HttpStatus,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { LogService } from '../../libs/log/log.service';
 import { HttpAdapterHost } from '@nestjs/core';
 import { BaseException } from './exception/base.exception';
@@ -17,13 +11,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     private readonly httpAdapterHost: HttpAdapterHost,
   ) {}
 
-  catch(error: unknown, host: ArgumentsHost): any {
+  catch(error: Error, host: ArgumentsHost): any {
     const exception = (() => {
       if (error instanceof BaseException) {
         return error;
-      }
-
-      if (error instanceof HttpException) {
+      } else {
         return new BaseException({
           message: error.message,
           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -32,14 +24,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
     })();
 
-    exception.errorType === ErrorTypeEnum.ERROR
-      ? this.logService.error('error', exception)
-      : this.logService.warn('warn', exception);
+    exception.errorType === ErrorTypeEnum.ERROR ? this.logService.error('error', exception) : this.logService.warn('warn', exception);
 
-    this.httpAdapterHost.httpAdapter.reply(
-      (() => host.switchToHttp().getResponse())(),
-      exception.getResponse(),
-      exception.getStatus(),
-    );
+    this.httpAdapterHost.httpAdapter.reply((() => host.switchToHttp().getResponse())(), exception.getResponse(), exception.getStatus());
   }
 }

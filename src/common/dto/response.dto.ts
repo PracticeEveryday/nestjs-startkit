@@ -3,7 +3,7 @@ import { Exclude, Expose } from 'class-transformer';
 
 export class ResponseDto<T> {
   @Exclude() private readonly _statusCode: HttpStatus;
-  @Exclude() private readonly _data: T;
+  @Exclude() private readonly _data?: T;
   @Exclude() private readonly _message: string = '';
 
   constructor(status: HttpStatus, options?: { data?: T; message?: string }) {

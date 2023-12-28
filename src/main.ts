@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const envService = app.get(EnvService);
-  const PORT = +envService.get<EnvEnum>(EnvEnum.PORT) || 3000;
+  const PORT = Number(envService.get<EnvEnum>(EnvEnum.PORT)) || 3000;
 
   setupSwagger(app);
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));

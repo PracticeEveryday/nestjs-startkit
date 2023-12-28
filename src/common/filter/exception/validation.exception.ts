@@ -11,7 +11,7 @@ export class ValidationException extends BaseException {
         .map((error, idx) => {
           const { property, value, constraints } = error;
 
-          const joinedConstraints = Object.values(constraints)
+          const joinedConstraints = Object.values(constraints!)
             .map((value) => value)
             .join(` + `);
 

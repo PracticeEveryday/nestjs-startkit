@@ -7,14 +7,9 @@ export class BaseException extends HttpException {
   @Exclude() private _stack?: string;
   @Exclude() private _errorType: ErrorTypeEnum = ErrorTypeEnum.ERROR;
 
-  constructor(param: {
-    message: string;
-    statusCode: number;
-    errorType?: ErrorTypeEnum;
-    stack?: string;
-  }) {
+  constructor(param: { message: string; statusCode: number; errorType?: ErrorTypeEnum; stack?: string }) {
     super(param.message, param.statusCode);
-    this.statusCode = param.statusCode;
+    this._statusCode = param.statusCode;
     param.stack && (this.stack = param.stack);
     param.errorType && (this.errorType = param.errorType);
   }
@@ -30,7 +25,7 @@ export class BaseException extends HttpException {
   }
 
   @Expose()
-  get stack(): string {
+  get stack(): string | undefined {
     return this._stack;
   }
 
