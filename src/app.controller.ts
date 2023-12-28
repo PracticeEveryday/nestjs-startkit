@@ -11,7 +11,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
-  @ApiOkResponse({ type: ResponseDto<TestApiDto> })
+  @ApiOkResponse({ type: TestApiDto })
   getHello(): ResponseDto<TestApiDto> {
     return ResponseDto.OK<TestApiDto>(this.appService.getHello());
   }
