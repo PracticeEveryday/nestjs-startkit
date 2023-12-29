@@ -17,13 +17,13 @@
 2. cd nestjs-startkit
 3. yarn install 
 4. .env.local 파일 생성 (각 환경에 맞는 .env를 만들어 줍니다. ex) .env.dev, .env.qa...)
-   5. ```
-      // .env.local
-      PORT=8080
+```
+// .env.local
+PORT=8080
 
-      SWAGGER_USER=user
-      SWAGGER_PASSWORD=password
-      ```
+SWAGGER_USER=user
+SWAGGER_PASSWORD=password
+```
 5. yarn start:local
 
 ## Test API
