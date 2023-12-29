@@ -33,7 +33,6 @@
 
 ```json
 {
-  "statusCode": 200,
   "message": "",
   "data": {
     "hello": "Hello World!"
@@ -47,7 +46,6 @@
 
 ```json
 {
-  "statusCode": 404,
   "data": {
     "message": "못 찾았어요!"
   }
