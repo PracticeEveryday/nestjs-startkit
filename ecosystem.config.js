@@ -7,6 +7,7 @@ module.exports = {
       exec_mode: 'cluster',
       instances: 2, //"max",
       kill_timeout: 4000,
+      listen_timeout: 10000,
       wait_ready: true,
       autorestart: true,
       // 파일 변경을 감지하여 자동으로 재시작할지 여부
