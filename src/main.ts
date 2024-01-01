@@ -7,6 +7,7 @@ import { setupSwagger } from './libs/swagger/swagger';
 import { ClassSerializerInterceptor } from '@nestjs/common';
 
 async function bootstrap() {
+  console.log(process.env.NODE_ENV);
   const app = await NestFactory.create(AppModule);
 
   const envService = app.get(EnvService);
