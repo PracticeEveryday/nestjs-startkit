@@ -15,4 +15,9 @@ export class PaginationQueryDto {
   })
   @IsOptionalNumber('pageSize', 0)
   public pageSize: number;
+
+  constructor(pageNo: number, pageSize: number) {
+    this.pageNo = pageNo;
+    this.pageSize = pageSize;
+  }
 }
