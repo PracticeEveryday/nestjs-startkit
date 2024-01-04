@@ -22,17 +22,19 @@ async function bootstrap() {
     if (process.env.NODE_ENV !== NodeEnvEnum.LOCAL && process.send) process.send('ready');
   });
 
-  process.on('SIGINT', () => {
-    console.info('SIGINT Signal Received');
-    app
-      .close()
-      .then(() => {
-        process.exit(0);
-      })
-      .catch((error) => {
-        console.error('Error during app closing:', error);
-        process.exit(1);
-      });
-  });
+  if (process.env.NODE_ENV !== NodeEnvEnum.LOCAL) {
+    process.on('SIGINT', () => {
+      console.info('SIGINT Signal Received');
+      app
+        .close()
+        .then(() => {
+          process.exit(0);
+        })
+        .catch((error) => {
+          console.error('Error during app closing:', error);
+          process.exit(1);
+        });
+    });
+  }
 }
 bootstrap();
