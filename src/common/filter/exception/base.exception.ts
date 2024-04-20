@@ -1,5 +1,6 @@
 import { HttpException } from '@nestjs/common';
 import { Exclude, Expose } from 'class-transformer';
+
 import { ErrorTypeEnum } from '../../enum/errorType.enum';
 
 export class BaseException extends HttpException {

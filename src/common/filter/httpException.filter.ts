@@ -1,7 +1,8 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
-import { LogService } from '../../libs/log/log.service';
 import { HttpAdapterHost } from '@nestjs/core';
+
 import { BaseException } from './exception/base.exception';
+import { LogService } from '../../libs/log/log.service';
 import { ErrorTypeEnum } from '../enum/errorType.enum';
 
 @Catch()
@@ -25,7 +26,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         });
       }
 
-      let lastError = error as Error;
+      const lastError = error as Error;
       return new BaseException({
         message: lastError.message,
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,

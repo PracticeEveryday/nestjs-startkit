@@ -1,5 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
+
 import { BaseException } from './base.exception';
 import { ErrorTypeEnum } from '../../enum/errorType.enum';
 
@@ -8,7 +9,7 @@ export class ValidationException extends BaseException {
     super({
       statusCode: HttpStatus.BAD_REQUEST,
       message: errors
-        .map((error, idx) => {
+        .map((error) => {
           const { property, value, constraints } = error;
 
           const joinedConstraints = Object.values(constraints!)

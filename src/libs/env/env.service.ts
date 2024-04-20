@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { EnvEnum } from './env.enum';
 import { ConfigService } from '@nestjs/config';
+
+import { EnvEnum } from './env.enum';
 import { BadRequestException } from '../../common/filter/exception/badRequest.exception';
 
 @Injectable()
