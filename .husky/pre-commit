@@ -1,1 +1,3 @@
-npm run lint
+yarn run lint
+yarn run test:unit
+yarn run test:e2e

@@ -5,7 +5,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ValidationException } from './common/filter/exception/validation.exception';
 import { HttpExceptionFilter } from './common/filter/httpException.filter';
-import { HttpResponseInterceptor } from './common/interceptor/httpResponse.interceptor';
 import { LogInterceptor } from './common/interceptor/log.interceptor';
 import { EnvModule } from './libs/env/env.module';
 import { LogModule } from './libs/log/log.module';
@@ -18,10 +17,6 @@ const interceptors = [
   {
     provide: APP_INTERCEPTOR,
     useClass: ClassSerializerInterceptor,
-  },
-  {
-    provide: APP_INTERCEPTOR,
-    useClass: HttpResponseInterceptor,
   },
 ];
 
