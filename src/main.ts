@@ -6,7 +6,6 @@ import { AppModule } from './app.module';
 import { NodeEnvEnum } from './common/enum/nodeEnv.enum';
 import { EnvEnum } from './libs/env/env.enum';
 import { EnvService } from './libs/env/env.service';
-import { setupSwagger } from './libs/swagger/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,7 +13,6 @@ async function bootstrap() {
   const envService = app.get(EnvService);
   const PORT = Number(envService.get<EnvEnum>(EnvEnum.PORT)) || 3000;
 
-  setupSwagger(app);
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 

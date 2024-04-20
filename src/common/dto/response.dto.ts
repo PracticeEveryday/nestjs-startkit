@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 
 export class ResponseDto<T> {
@@ -19,7 +18,6 @@ export class ResponseDto<T> {
   }
 
   @Expose()
-  @ApiProperty({ example: 'message 내용이 들어옵니다.' })
   get message(): string | undefined {
     return this._message;
   }

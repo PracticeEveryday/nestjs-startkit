@@ -1,8 +1,6 @@
 import { Controller, Get, HttpStatus, Query } from '@nestjs/common';
 
 import { AppService } from './app.service';
-import { CustomApiOkResponse } from './common/decorator/apiOkResponse.decorator';
-import { ApiOkResponsePaginated } from './common/decorator/apiOkResponsePaginated.decorator';
 import { ResponseDto } from './common/dto/response.dto';
 import { TestApiDto } from './common/dto/testApi.dto';
 import { TestListQueryDto } from './common/dto/testListApi.dto';
@@ -15,13 +13,11 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
-  @CustomApiOkResponse(TestApiDto)
   getHello(): ResponseDto<TestApiDto> {
     return ResponseDto.OK<TestApiDto>(this.appService.getHello());
   }
 
   @Get('/list')
-  @ApiOkResponsePaginated(TestApiDto)
   getHelloList(@Query() queryDto: TestListQueryDto) {
     const data = this.appService.getHello();
     return toPagination<TestApiDto>({ queryDto, data, totalCount: 1 });
