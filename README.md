@@ -1,5 +1,7 @@
 # nestjs-startkit
 
+The nestjs-startkit was created to automatically build the basic structure of the nestjs framework.
+
 ### npx
 
 -   `npx nestjs-startkit [repoName]`
@@ -13,13 +15,10 @@
 2. cd nestjs-startkit
 3. yarn install 
 4. make `.env.local` file
-5. 
+
 ```
 // .env.local
 PORT=8080
-
-SWAGGER_USER=user
-SWAGGER_PASSWORD=password
 ```
 5. yarn start:local
 
