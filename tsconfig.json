@@ -1,22 +1,22 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "module": "commonjs",
-    "target": "ES2021",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true
+    "strict": true, // 모든 엄격한 타입 검사 옵션을 활성화합니다.
+    "module": "commonjs", // 모듈 시스템을 commonjs로 설정합니다.
+    "target": "ES2021", // 컴파일된 코드의 대상 ECMAScript 버전을 ES2021로 설정합니다.
+    "sourceMap": true, // 소스 맵 파일을 생성하여 디버깅을 쉽게 할 수 있게 합니다.
+    "outDir": "./dist", // 컴파일된 파일이 저장될 디렉토리를 ./dist로 설정합니다.
+    "baseUrl": "./", // 기본 경로를 현재 디렉토리로 설정합니다.
+    "incremental": true, // 컴파일 성능을 향상시키기 위해 증분 컴파일을 활성화합니다.
+    "skipLibCheck": true, // 라이브러리 파일의 타입 검사를 건너뜁니다.
+    "noImplicitAny": false, // 암시적 any 타입을 허용합니다.
+    "strictBindCallApply": false, // 엄격한 bind, call, apply 메서드의 타입 검사를 비활성화합니다.
+    "forceConsistentCasingInFileNames": false, // 파일 이름의 대소문자 일관성을 강제하지 않습니다.
+    "noFallthroughCasesInSwitch": false, // switch 문에서 fallthrough case를 허용합니다.
+    "declaration": true, // 타입 선언 파일(.d.ts)을 생성합니다.
+    "removeComments": true, // 컴파일된 파일에서 주석을 제거합니다.
+    "emitDecoratorMetadata": true, // 런타임에 데코레이터 메타데이터를 내보냅니다.
+    "experimentalDecorators": true, // 실험적 데코레이터 기능을 활성화합니다.
+    "allowSyntheticDefaultImports": true, // default export가 없는 모듈에서 default import를 허용합니다.
+    "strictNullChecks": true // 엄격한 null 타입 검사를 활성화합니다.
   }
 }
